@@ -21,7 +21,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 0),
         child: AppBar(
-          leading: name == 'WasteWise'
+          leading: name == 'Shop Ease'
               ? null
               : Container(
                   margin: const EdgeInsets.only(left: 10, bottom: 5, top: 5),
@@ -33,7 +33,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                           Icons.arrow_back_ios,
                           color: name == 'Details'
                               ? Colors.white
-                              : Colors.green[900],
+                              : Colors.black,
                         )), // Custom icon
                     onPressed: () {
                       Navigator.of(context)
@@ -55,17 +55,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       fontSize: 25.0,
                       color: name == 'Details'
                           ? Colors.white
-                          : Colors.green[900])),
+                          : Colors.black)),
             ],
           ),
           actions: [
-            if (name == 'WasteWise' || name == 'Details')
+            if (name == 'Shop Ease' || name == 'Details')
               Padding(
                 padding: const EdgeInsets.only(right: 16.0),
                 child: Stack(
                   children: [
                     IconButton(
                       icon: const Icon(Icons.shopping_cart),
+                      color: name == 'Details' ? Colors.white : const Color.fromARGB(255, 109, 12, 12),
                       onPressed: () {
                         Navigator.pushNamed(context, '/shoppingcart');
                       },

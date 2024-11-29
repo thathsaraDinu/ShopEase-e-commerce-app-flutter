@@ -1,44 +1,32 @@
 final List<Map<String, String>> productTypes = [
   {
     'type': 'All',
-    'image': 'pexels-alleksana-4406808.jpg',
+    'image': '960x0 (1).webp',
     'search': '',
     'topic': 'All Products'
   },
   {
-    'type': 'Bags',
-    'image': 'pexels-daria-liudnaya-8167788.jpg',
-    'search': 'bag',
-    'topic': 'Bags'
+    'type': 'Tech',
+    'image': 'istockphoto-635790376-612x612.jpg',
+    'search': 'tech',
+    'topic': 'Tech'
   },
   {
-    'type': 'Notebooks',
-    'image': 'pexels-pixabay-159865.jpg',
-    'search': 'book',
-    'topic': 'Notebooks'
+    'type': 'Sport goods',
+    'image': 'Sporting-Goods-Sportswear-Wholesale-Distributors.jpg',
+    'search': 'sport',
+    'topic': 'Sport goods'
   },
   {
-    'type': 'Water Bottles',
-    'image': 'pexels-jibarofoto-4000090.jpg',
-    'search': 'bottle',
-    'topic': 'Water Bottles'
+    'type': 'Fashion',
+    'image': 'flat-lay-with-women-accessories-800x500.jpg',
+    'search': 'fashion',
+    'topic': 'Fashion'
   },
   {
-    'type': 'Recycle Bins',
-    'image': 'pexels-lara-jameson-9324347.jpg',
-    'search': 'bin',
-    'topic': 'Recycle Bins'
-  },
-  {
-    'type': 'Plant Pots',
-    'image': 'pexels-nietjuh-776656.jpg',
-    'search': 'pot',
-    'topic': 'Plant Pots'
-  },
-  {
-    'type': 'Bags',
-    'image': 'pexels-skylar-kang-6045068.jpg',
-    'search': 'bag',
-    'topic': 'Bags'
+    'type': 'Medical',
+    'image': '2-23012.jpeg',
+    'search': 'medical',
+    'topic': 'Medical Products'
   },
 ];

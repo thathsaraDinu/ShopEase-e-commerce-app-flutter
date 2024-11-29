@@ -2,11 +2,11 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:products_repository/products_repository.dart';
-import 'package:shoppingapp/ui/cards/product_card.dart';
-import 'package:shoppingapp/ui/cards/product_type_card.dart';
-import 'package:shoppingapp/common_network_check/dependency_injection.dart';
-import 'package:shoppingapp/data/dummy_data_product_type.dart';
-import 'package:shoppingapp/common_widgets/custom_app_bar.dart';
+import 'package:shopease/ui/cards/product_card.dart';
+import 'package:shopease/ui/cards/product_type_card.dart';
+import 'package:shopease/common_network_check/dependency_injection.dart';
+import 'package:shopease/data/dummy_data_product_type.dart';
+import 'package:shopease/common_widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';
 
 class RecycledItemsMain extends StatefulWidget {
@@ -20,7 +20,7 @@ class RecycledItemsMainState extends State<RecycledItemsMain> {
   int selectedIndex = 0;
   List<ProductModel> _products = [];
   bool isLoading = false;
-  int sortingType = 1;
+  int sortingType = 0;
   Timer? _debounce;
   List<ProductModel> filteredProductsl = [];
 
@@ -117,14 +117,14 @@ class RecycledItemsMainState extends State<RecycledItemsMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      appBar: const CustomAppBar(name: 'WasteWise'),
+      appBar: const CustomAppBar(name: 'Shop Ease'),
       body: GestureDetector(
         onTap: () {
           _focusNode.unfocus(); // Unfocus TextField when tapping outside
         },
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 1),
             child: Column(
               children: [
                 Padding(
@@ -155,7 +155,7 @@ class RecycledItemsMainState extends State<RecycledItemsMain> {
                             color: Color.fromARGB(255, 124, 124, 124)),
                       ),
                       prefixIcon: const Icon(Icons.search),
-                      hintText: 'Search Recycled Products',
+                      hintText: 'Search Products',
                       hintStyle: const TextStyle(
                         color: Color.fromARGB(255, 174, 174, 174),
                         fontSize: 16.0,
@@ -224,7 +224,7 @@ class RecycledItemsMainState extends State<RecycledItemsMain> {
                                       ListTile(
                                         selected:
                                             sortingType == 1 ? true : false,
-                                        selectedColor: Colors.green[800],
+                                        selectedColor: Colors.red[800],
                                         title: const Text('Name: A to Z'),
                                         onTap: () {
                                           setState(() {
@@ -237,7 +237,7 @@ class RecycledItemsMainState extends State<RecycledItemsMain> {
                                       ListTile(
                                         selected:
                                             sortingType == 2 ? true : false,
-                                        selectedColor: Colors.green[800],
+                                        selectedColor: Colors.red[800],
                                         title: const Text('Name: Z to A'),
                                         onTap: () {
                                           setState(() {
@@ -251,7 +251,7 @@ class RecycledItemsMainState extends State<RecycledItemsMain> {
                                       ListTile(
                                         selected:
                                             sortingType == 3 ? true : false,
-                                        selectedColor: Colors.green[800],
+                                        selectedColor: Colors.red[800],
                                         title: const Text('Price: Low to High'),
                                         onTap: () {
                                           setState(() {
@@ -264,7 +264,7 @@ class RecycledItemsMainState extends State<RecycledItemsMain> {
                                       ListTile(
                                         selected:
                                             sortingType == 4 ? true : false,
-                                        selectedColor: Colors.green[800],
+                                        selectedColor: Colors.red[800],
                                         title: const Text('Price: High to Low'),
                                         onTap: () {
                                           setState(() {
@@ -311,7 +311,7 @@ class RecycledItemsMainState extends State<RecycledItemsMain> {
                           child: Center(
                               child: CircularProgressIndicator(
                             valueColor: AlwaysStoppedAnimation<Color>(
-                                Color.fromARGB(255, 44, 113, 47)),
+                                Color.fromARGB(255, 113, 44, 44)),
                             strokeWidth: 4.0, // Width of the indicator stroke
                             backgroundColor: Colors.transparent,
                           )),

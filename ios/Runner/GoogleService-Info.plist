@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.shoppingapp</string>
+	<string>com.dinu.shopease</string>
 	<key>PROJECT_ID</key>
 	<string>wastewise-7b983</string>
 	<key>STORAGE_BUCKET</key>

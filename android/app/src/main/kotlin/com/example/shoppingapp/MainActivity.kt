@@ -1,4 +1,4 @@
-package com.example.shoppingapp
+package com.dinu.shopease
 
 import io.flutter.embedding.android.FlutterActivity
 

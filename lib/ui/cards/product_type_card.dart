@@ -29,7 +29,7 @@ class _ProductTypeCardState extends State<ProductTypeCard> {
         ),
         decoration: BoxDecoration(
             color: widget.selectedIndex == widget.index
-                ? Colors.green[200]
+                ? Colors.red[200]
                 : Colors.transparent,
             borderRadius: const BorderRadius.all(Radius.circular(10))),
         child: Column(

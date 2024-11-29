@@ -11,7 +11,7 @@ class LoginChecker extends StatelessWidget {
   Widget build(BuildContext context) {
     final userRepo = Provider.of<FirebaseUserRepo>(context);
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.white,
       body: StreamBuilder<MyUser>(
         stream: userRepo.user,
         builder: (context, snapshot) {
@@ -21,8 +21,8 @@ class LoginChecker extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/images/waste-wise-high-resolution-logo-transparent.png',
-                    height: 150,
+                    'assets/images/Shop Ease (1).png',
+                    height: 200,
                   ),
                   const SizedBox(height: 40,),
                   const SizedBox(
@@ -30,7 +30,7 @@ class LoginChecker extends StatelessWidget {
                     height: 30.0, // Set height
                     child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
-                          Color.fromARGB(255, 44, 113, 47)), // Color of the indicator
+                          Colors.red), // Color of the indicator
                       strokeWidth: 4.0, // Width of the indicator stroke
                       backgroundColor:
                           Colors.transparent, // Background color behind the indicator

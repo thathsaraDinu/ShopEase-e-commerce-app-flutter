@@ -11,7 +11,7 @@ class BackgroundImageWrapper extends StatelessWidget {
       children: [
         Positioned.fill(
           child: Image.asset(
-            'assets/images/Group_2313.jpg',
+            'assets/images/Group 34041.jpg',
             fit: BoxFit.cover,
           ),
         ),

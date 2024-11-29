@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shoppingapp/common_widgets/background_image_wrapper.dart';
-import 'package:shoppingapp/screens/_main_screens/profile_page.dart';
-import 'package:shoppingapp/screens/_main_screens/recycled_items_main.dart';
+import 'package:shopease/common_widgets/background_image_wrapper.dart';
+import 'package:shopease/screens/_main_screens/profile_page.dart';
+import 'package:shopease/screens/_main_screens/recycled_items_main.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -29,6 +29,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
+    var red = Colors.red[900];
     return BackgroundImageWrapper(
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -36,11 +37,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
-
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.red[100],
           type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.teal, // Color for the selected item
-          unselectedItemColor: Colors.grey[400], // Color for unselected items
+          selectedItemColor: red, // Color for the selected item
+          unselectedItemColor: Colors.red[300], // Color for unselected items
           showUnselectedLabels: false, // Hides unselected labels
           showSelectedLabels: false, // Hides selected labels
           elevation: 15, // Adds shadow effect

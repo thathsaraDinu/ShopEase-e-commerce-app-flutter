@@ -1,4 +1,4 @@
-name: shoppingapp
+name: shopease
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -40,6 +40,7 @@ dependencies:
   get: ^4.6.6
   http: ^1.2.2
   another_flushbar: ^1.12.30
+  flutter_native_splash: ^2.4.3
 
   user_repository:
     path: packages/user_repository
@@ -47,12 +48,29 @@ dependencies:
   products_repository:
     path: packages/products_repository
 
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: "assets/images/Shop Ease (1).png"
+  color_dark: "#FFFFFF"
+  image_dark: "assets/images/Shop Ease (1).png"
   
+  # add this
+  android_12:
+    icon_background_color: "#FFFFFF"
+    image: "assets/images/Shop Ease (1).png"
+    icon_background_color_dark: "#FFFFFF"
+    image_dark: "assets/images/Shop Ease (1).png"
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   provider: ^6.0.5
+  flutter_launcher_icons: "^0.14.1"
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/Shop Ease (2)_icon.png"
   
 
   # The "flutter_lints" package below contains a set of recommended lints to

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:products_repository/products_repository.dart';
 import 'package:provider/provider.dart';
-import 'package:shoppingapp/common_widgets/custom_snackbar.dart';
-import 'package:shoppingapp/common_network_check/firestore_provider.dart';
+import 'package:shopease/common_widgets/custom_snackbar.dart';
+import 'package:shopease/common_network_check/firestore_provider.dart';
 import 'package:user_repository/user_repository.dart';
 
 class ProductDetails extends StatefulWidget {
@@ -56,7 +56,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             height: 10.0,
           ),
           Text(
-            '${item.price} LKR',
+            '${item.price.toInt()} USD',
             style: const TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.w700,
@@ -162,54 +162,6 @@ class _ProductDetailsState extends State<ProductDetails> {
 
     // Return the color with reduced lightness, which makes it appear darker
     return darkenedHsl.toColor();
-  }
-
-  Column sizeselectarea() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Size',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(
-          height: 10.0,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
-            children: [
-              Container(
-                height: 35,
-                width: 50,
-                margin: const EdgeInsets.symmetric(horizontal: 5),
-                decoration: BoxDecoration(
-                    color: Colors.green[100],
-                    border: Border.all(
-                      color: Colors.green,
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(10)),
-                child: const Center(
-                  child: Text(
-                    '6',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 15,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(
-          height: 10.0,
-        ),
-      ],
-    );
   }
 
   Container itemcountarea() {
@@ -318,7 +270,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.green,
+            backgroundColor: Colors.red,
             foregroundColor: Colors.white,
             padding:
                 const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),

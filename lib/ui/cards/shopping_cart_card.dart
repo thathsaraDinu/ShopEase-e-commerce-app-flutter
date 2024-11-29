@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shoppingapp/common_widgets/custom_snackbar.dart';
-import 'package:shoppingapp/common_network_check/firestore_provider.dart';
+import 'package:shopease/common_widgets/custom_snackbar.dart';
+import 'package:shopease/common_network_check/firestore_provider.dart';
 import 'package:user_repository/user_repository.dart';
 
 class ShoppingCartCard extends StatefulWidget {
@@ -21,7 +21,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
     final userid = user.currentUser!.uid;
     return Card(
       color: Colors.white,
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
       elevation: 5,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
@@ -32,16 +32,16 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
             right: 0,
             top: 0,
             child: Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
               decoration: BoxDecoration(
-                color: Colors.green[900],
+                color: Colors.red[900],
                 borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(12),
                   bottomLeft: Radius.circular(12),
                 ),
               ),
               child: Text(
-                'LKR ${widget.cartItem.price}',
+                '${widget.cartItem.price.toInt()} USD',
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 15,
@@ -118,6 +118,9 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            SizedBox(
+                              height: 20,
+                            ),
                             Text(
                               widget.cartItem.name,
                               style: const TextStyle(
