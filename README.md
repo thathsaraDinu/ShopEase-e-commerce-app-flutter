@@ -17,8 +17,9 @@
 
 ## Logo
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center;">
-    <img src="assets/images/ShopEase(1).png"/>
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <img src="assets/images/ShopEase(1).png" style="max-width: 100%; height: auto;" alt="ShopEase Logo" />
 </div>
+
 
 ## Screenshots
