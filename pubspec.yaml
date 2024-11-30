@@ -50,16 +50,16 @@ dependencies:
 
 flutter_native_splash:
   color: "#FFFFFF"
-  image: "assets/images/Shop Ease (1).png"
-  color_dark: "#FFFFFF"
-  image_dark: "assets/images/Shop Ease (1).png"
+  image: "assets/images/Shop Ease (2).png"
+  color_dark: "#000000"
+  image_dark: "assets/images/Shop Ease (3).png"
   
   # add this
   android_12:
     icon_background_color: "#FFFFFF"
-    image: "assets/images/Shop Ease (1).png"
-    icon_background_color_dark: "#FFFFFF"
-    image_dark: "assets/images/Shop Ease (1).png"
+    image: "assets/images/Shop Ease (2).png"
+    icon_background_color_dark: "#000000"
+    image_dark: "assets/images/Shop Ease (3).png"
 
 dev_dependencies:
   flutter_test:
@@ -70,7 +70,7 @@ dev_dependencies:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/Shop Ease (2)_icon.png"
+  image_path: "assets/icon/icon.png"
   
 
   # The "flutter_lints" package below contains a set of recommended lints to

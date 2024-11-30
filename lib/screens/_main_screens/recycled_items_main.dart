@@ -124,7 +124,7 @@ class RecycledItemsMainState extends State<RecycledItemsMain> {
         },
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 1),
+            padding: const EdgeInsets.only(left: 15.0, right: 15, top: 8, bottom: 15),
             child: Column(
               children: [
                 Padding(
