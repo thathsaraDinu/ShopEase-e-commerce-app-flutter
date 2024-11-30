@@ -66,7 +66,7 @@ class _SignupLoginPageState extends State<SignupLoginPage> {
             children: [
               const SizedBox(height: 30),
               Image.asset(
-                'assets/images/Shop Ease (1).png',
+                'assets/images/ShopEase(1).png',
                 height: 200,
               ),
               const SizedBox(height: 10),

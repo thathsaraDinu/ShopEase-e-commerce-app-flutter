@@ -21,7 +21,7 @@ class LoginChecker extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/images/Shop Ease (1).png',
+                    'assets/images/ShopEase(1).png',
                     height: 200,
                   ),
                   const SizedBox(height: 40,),

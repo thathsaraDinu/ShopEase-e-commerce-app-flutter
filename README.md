@@ -17,6 +17,6 @@
 
 ## Logo
 
-![Logo](assets/images/Shop\ Ease\ \(1\).png)
+![Logo](assets/images/ShopEase(1).png)
 
 ## Screenshots
