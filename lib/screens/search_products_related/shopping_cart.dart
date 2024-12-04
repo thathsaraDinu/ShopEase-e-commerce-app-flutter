@@ -94,7 +94,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                 children: [
                                   Lottie.asset(
                                     'assets/images/emptyboxwithsign.json',
-                                    height: 300,
+                                    height: 250,
                                   ),
                                   Text(
                                     'Your Cart is Empty',
