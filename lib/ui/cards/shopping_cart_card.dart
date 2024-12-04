@@ -78,8 +78,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                                         .pop(); // Close the popup
                                   },
                                   child: const Text("Cancel",
-                                      style: TextStyle(
-                                          color: Colors.blue)),
+                                      style: TextStyle(color: Colors.blue)),
                                 ),
                                 TextButton(
                                   onPressed: () async {
@@ -88,8 +87,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                                   },
                                   child: const Text(
                                     "Delete",
-                                    style: TextStyle(
-                                        color: Colors.red),
+                                    style: TextStyle(color: Colors.red),
                                   ),
                                 ),
                               ],
@@ -221,6 +219,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                             ],
                           ),
                         ),
+                        const SizedBox(width: 8),
                       ],
                     ),
                   ],
