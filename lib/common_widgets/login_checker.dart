@@ -30,7 +30,7 @@ class LoginChecker extends StatelessWidget {
                     height: 30.0, // Set height
                     child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
-                          Colors.red), // Color of the indicator
+                          Color.fromARGB(255, 113, 44, 44)),
                       strokeWidth: 4.0, // Width of the indicator stroke
                       backgroundColor:
                           Colors.transparent, // Background color behind the indicator

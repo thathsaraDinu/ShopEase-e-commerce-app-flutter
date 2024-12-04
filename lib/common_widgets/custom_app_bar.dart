@@ -8,7 +8,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   final String name;
 
-  const CustomAppBar({super.key, required this.name})
+final bool isMainPage;
+  const CustomAppBar({super.key, required this.name,  required this.isMainPage})
       : preferredSize = const Size.fromHeight(kToolbarHeight);
 
   @override
@@ -21,7 +22,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 0),
         child: AppBar(
-          leading: name == 'Shop Ease'
+          leading: isMainPage == true
               ? null
               : Container(
                   margin: const EdgeInsets.only(left: 10, bottom: 5, top: 5),

@@ -73,6 +73,15 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                               ),
                               actions: [
                                 TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .pop(); // Close the popup
+                                  },
+                                  child: const Text("Cancel",
+                                      style: TextStyle(
+                                          color: Colors.blue)),
+                                ),
+                                TextButton(
                                   onPressed: () async {
                                     await _removeCartItem(
                                         cartService, userid, context);
@@ -80,17 +89,8 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                                   child: const Text(
                                     "Delete",
                                     style: TextStyle(
-                                        color: Colors.redAccent, fontSize: 16),
+                                        color: Colors.red),
                                   ),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context)
-                                        .pop(); // Close the popup
-                                  },
-                                  child: const Text("Close",
-                                      style: TextStyle(
-                                          color: Colors.black87, fontSize: 16)),
                                 ),
                               ],
                             );

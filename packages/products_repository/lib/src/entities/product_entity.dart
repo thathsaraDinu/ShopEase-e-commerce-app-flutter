@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProductEntity {
-  String id;
+  String pid;
   String name;
   double price;
   String description;
@@ -10,9 +10,10 @@ class ProductEntity {
   int ratingCount;
   List<String> imageUrls;
   List<Color> colors = [];
+  String type;
 
   ProductEntity({
-    required this.id,
+    required this.pid,
     required this.name,
     required this.price,
     required this.description,
@@ -21,11 +22,12 @@ class ProductEntity {
     required this.ratingCount,
     required this.imageUrls,
     required this.colors,
+    required this.type,
   });
 
   static ProductEntity fromDocument(Map<String, Object?> doc, [String? id]) {
     return ProductEntity(
-      id: id ?? '', // Provide default empty string if null
+      pid: doc['pid'] as String? ?? '', // Provide default empty string if null
       name: doc['name'] as String? ?? 'Unknown Product', // Handle null case
       price:
           (doc['price'] as num?)?.toDouble() ?? 0.0, // Default to 0.0 if null
@@ -40,6 +42,7 @@ class ProductEntity {
                   Color(colorCode as int)) // Convert color code to Color
               .toList() ??
           [], // Convert to Color
+      type: doc['type'] as String? ?? 'unknown', // Default to 'unknown'
     );
   }
 }

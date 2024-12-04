@@ -52,7 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
-                          Colors.red)
+                        Color.fromARGB(255, 113, 44, 44)),
                   ); // Show loading indicator while waiting
                 } else if (snapshot.hasError) {
                   return Text(

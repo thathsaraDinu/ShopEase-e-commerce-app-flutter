@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:shopease/common_network_check/firestore_provider.dart';
 import 'package:shopease/routes/routes.dart';
 import 'package:user_repository/user_repository.dart';
+import 'package:wishlist_repository/wishlist_repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,7 +44,10 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => ProductService()),
         ChangeNotifierProvider(
           create: (_) => FirebaseCartRepo(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (context) => FirebaseWishlistRepo(),
+        ),
       ],
       child: const MyApp(),
     ),

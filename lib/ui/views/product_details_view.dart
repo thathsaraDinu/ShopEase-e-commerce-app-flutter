@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shopease/common_widgets/custom_snackbar.dart';
 import 'package:shopease/common_network_check/firestore_provider.dart';
 import 'package:user_repository/user_repository.dart';
+import 'package:wishlist_repository/wishlist_repository.dart';
 
 class ProductDetails extends StatefulWidget {
   final BuildContext parentContext;
@@ -24,8 +25,44 @@ class _ProductDetailsState extends State<ProductDetails> {
   Widget build(BuildContext context) {
     final cart = Provider.of<FirebaseCartRepo>(context, listen: false);
     final user = Provider.of<FirebaseUserRepo>(context, listen: false);
-
+    final wishlist = Provider.of<FirebaseWishlistRepo>(context, listen: false);
     String userid = user.currentUser!.uid;
+
+    Future<void> _addToWishList(BuildContext context,
+        FirebaseWishlistRepo wishlist, String userId, String productId) async {
+      try {
+        await wishlist.addWishlistItem(userId, productId);
+        CustomSnackbar().show(
+          type: 's',
+          context: context,
+          message: 'Item added to wishlist!',
+        );
+      } catch (e) {
+        CustomSnackbar().show(
+          type: 'w',
+          context: context,
+          message: 'Error adding item to wishlist!',
+        );
+      }
+    }
+
+    Future<void> _deleteWishList(BuildContext context,
+        FirebaseWishlistRepo wishlist, String userId, String productId) async {
+      try {
+        await wishlist.deleteWishlistItem(userId, productId);
+        CustomSnackbar().show(
+          type: 's',
+          context: context,
+          message: 'Item removed from wishlist!',
+        );
+      } catch (e) {
+        CustomSnackbar().show(
+          type: 'w',
+          context: context,
+          message: 'Error removing item from wishlist!',
+        );
+      }
+    }
 
     final ProductModel item =
         ModalRoute.of(context)!.settings.arguments as ProductModel;
@@ -50,6 +87,62 @@ class _ProductDetailsState extends State<ProductDetails> {
                 ),
               ),
               const Spacer(),
+              StreamBuilder<bool>(
+                stream: wishlist.isInWishListStream(userid, item.pid),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const SizedBox.square(dimension: 48);
+                  }
+                  if (snapshot.hasError) {
+                    return const Icon(Icons.error);
+                  }
+                  if (snapshot.data == true) {
+                    return AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 300),
+                      transitionBuilder:
+                          (Widget child, Animation<double> animation) {
+                        return ScaleTransition(scale: animation, child: child);
+                      },
+                      child: IconButton(
+                        key: const ValueKey('favorited'),
+                        icon: const Icon(
+                          Icons.favorite,
+                          color: Colors.red,
+                          size: 30,
+                        ),
+                        onPressed: () async {
+                          await _deleteWishList(
+                            context,
+                            wishlist,
+                            userid,
+                            item.pid,
+                          );
+                        },
+                      ),
+                    );
+                  } else {
+                    return AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 300),
+                      transitionBuilder:
+                          (Widget child, Animation<double> animation) {
+                        return ScaleTransition(scale: animation, child: child);
+                      },
+                      child: IconButton(
+                        key: const ValueKey('unfavorited'),
+                        icon: const Icon(Icons.favorite_border, size: 30),
+                        onPressed: () async {
+                          await _addToWishList(
+                            context,
+                            wishlist,
+                            userid,
+                            item.pid,
+                          );
+                        },
+                      ),
+                    );
+                  }
+                },
+              ),
             ],
           ),
           const SizedBox(
@@ -303,7 +396,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         Provider.of<FirestoreProvider>(context, listen: false);
     try {
       await firestoreProvider.performFirestoreOperation(() async {
-        await cart.addCartItem(userid, selectedColor, itemAmount, item.id,
+        await cart.addCartItem(userid, selectedColor, itemAmount, item.pid,
             item.price, item.name, item.imageUrls[0], item.price);
         if (mounted) {
           CustomSnackbar().show(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shopease/common_widgets/background_image_wrapper.dart';
 import 'package:shopease/screens/_main_screens/profile_page.dart';
-import 'package:shopease/screens/_main_screens/recycled_items_main.dart';
+import 'package:shopease/screens/_main_screens/search_products.dart';
+import 'package:shopease/screens/_main_screens/wish_list_page.dart';
+import 'package:shopease/screens/search_products_related/shopping_cart.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -20,8 +22,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   static const List<Widget> _pages = <Widget>[
     Center(child: RecycledItemsMain()),
-    Center(child: Text('Search Page')),
-    Center(child: Text('Settings Page')),
+    Center(child: WishListPage()),
+    Center(child: ShoppingCart(isMainPage: true,)),
     Center(
       child: ProfilePage(),
     )
@@ -52,13 +54,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search_outlined),
-              activeIcon: Icon(Icons.search, size: 30),
+              icon: Icon(Icons.favorite_outline),
+              activeIcon: Icon(Icons.favorite, size: 30),
               label: 'Search',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings_outlined),
-              activeIcon: Icon(Icons.settings, size: 30),
+              icon: Icon(Icons.shopping_cart_outlined),
+              activeIcon: Icon(Icons.shopping_cart, size: 30),
               label: 'Cart',
             ),
             BottomNavigationBarItem(

@@ -1,4 +1,6 @@
+import 'package:dotlottie_loader/dotlottie_loader.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shopease/common_widgets/background_image_wrapper.dart';
 import 'package:shopease/common_widgets/custom_app_bar.dart';
 import 'package:shopease/ui/cards/address_card.dart';
@@ -7,7 +9,9 @@ import 'package:provider/provider.dart';
 import 'package:user_repository/user_repository.dart';
 
 class ShoppingCart extends StatefulWidget {
-  const ShoppingCart({super.key});
+  final bool isMainPage;
+
+  const ShoppingCart({super.key, required this.isMainPage});
 
   @override
   State<ShoppingCart> createState() => _ShoppingCartState();
@@ -23,7 +27,10 @@ class _ShoppingCartState extends State<ShoppingCart> {
     return BackgroundImageWrapper(
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: const CustomAppBar(name: 'Shopping cart'),
+        appBar: CustomAppBar(
+          name: 'Shopping cart',
+          isMainPage: widget.isMainPage ,
+        ),
         body: Column(
           children: [
             Expanded(
@@ -45,16 +52,69 @@ class _ShoppingCartState extends State<ShoppingCart> {
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return const Center(
-                                child: CircularProgressIndicator());
+                            return Center(
+                                child: Container(
+                                    child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const SizedBox(height: 10),
+                                DotLottieLoader.fromAsset(
+                                    "assets/images/loadingWord.lottie",
+                                    frameBuilder: (BuildContext ctx,
+                                        DotLottie? dotlottie) {
+                                  if (dotlottie != null) {
+                                    return Lottie.memory(
+                                        dotlottie.animations.values.single);
+                                  } else {
+                                    return Container();
+                                  }
+                                }),
+                                Text(
+                                  'Please wait',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey[700]),
+                                ),
+                              ],
+                            )));
                           }
                           if (snapshot.hasError) {
                             return const Center(
                                 child: Text('An Error occurred'));
                           }
                           if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                            return const Center(
-                                child: Text('Your cart is empty.'));
+                            return Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment
+                                    .center, // Ensures vertical centering
+                                crossAxisAlignment: CrossAxisAlignment
+                                    .center, // Ensures horizontal centering
+                                children: [
+
+                                  DotLottieLoader.fromAsset(
+                                      "assets/images/emptyboxwithwhitebackground.lottie",
+                                      frameBuilder: (BuildContext ctx,
+                                          DotLottie? dotlottie) {
+                                    if (dotlottie != null) {
+                                      return Lottie.memory(
+                                          dotlottie.animations.values.single);
+                                    } else {
+                                      return Container();
+                                    }
+                                  }),
+                                  Text(
+                                    'Your Cart is Empty',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey[700],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
                           }
 
                           final cartItems = snapshot.data!;
@@ -77,18 +137,23 @@ class _ShoppingCartState extends State<ShoppingCart> {
               stream: cartItems.getTotalPrice(user.currentUser!.uid),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
+                  return Expanded(
+                    child: const Center(
+                        child: CircularProgressIndicator(
+                      color: Color.fromARGB(255, 113, 44, 44),
+                    )),
+                  );
                 }
                 if (snapshot.hasError) {
                   return const Center(child: Text('0.0'));
                 }
                 if (!snapshot.hasData) {
                   return const Center(
-                      child: Text('Total amount not available'));
+                      child: Text('0.0')); // Handle case where no data is returned
                 }
                 final totalAmount = snapshot.data!;
                 return Container(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(12.0),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10.0),
@@ -103,7 +168,6 @@ class _ShoppingCartState extends State<ShoppingCart> {
                   ),
                   child: Column(
                     children: [
-                      const SizedBox(height: 5.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -125,7 +189,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 15.0),
+                      const SizedBox(height: 10.0),
                       ElevatedButton(
                         onPressed: () {
                           Navigator.pushNamed(context, '/checkout',
@@ -147,6 +211,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                           ),
                         ),
                       ),
+                      const SizedBox(height: 10.0),
                     ],
                   ),
                 );

@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:shopease/screens/_main_screens/recycled_items_main.dart';
+import 'package:shopease/screens/_main_screens/search_products.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

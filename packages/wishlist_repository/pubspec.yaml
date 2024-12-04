@@ -1,0 +1,23 @@
+name: wishlist_repository
+description: A repository package for managing wishlist in the ShopEase e-commerce app.
+version: 0.0.1
+homepage: https://github.com/thathsaradinu/ShopEase-e-commerce-app-flutter
+
+environment:
+  sdk: ">=2.17.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Add other dependencies here
+  products_repository:
+    path: ../products_repository
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+publish_to: none  # Prevent this package from being published to pub.dev

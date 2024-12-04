@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../entities/product_entity.dart';
 
 class ProductModel {
-  String id;
+  String pid;
   String name;
   double price;
   String description;
@@ -12,9 +12,10 @@ class ProductModel {
   int ratingCount;
   List<String> imageUrls;
   List<Color> colors = [];
+  String type;
 
   ProductModel({
-    required this.id,
+    required this.pid,
     required this.name,
     required this.price,
     required this.description,
@@ -23,11 +24,12 @@ class ProductModel {
     required this.ratingCount,
     required this.imageUrls,
     required this.colors,
+    required this.type,
   });
 
   // Static method for creating an empty ProductModel
   static final ProductModel empty = ProductModel(
-    id: '',
+    pid: '',
     name: '',
     price: 0.0,
     description: '',
@@ -36,12 +38,13 @@ class ProductModel {
     ratingCount: 0,
     imageUrls: [],
     colors: [],
+    type: '',
   );
 
   // Convert ProductEntity to ProductModel
   static ProductModel fromEntity(ProductEntity entity) {
     return ProductModel(
-      id: entity.id,
+      pid: entity.pid,
       name: entity.name,
       price: entity.price,
       description: entity.description,
@@ -50,6 +53,7 @@ class ProductModel {
       ratingCount: entity.ratingCount,
       imageUrls: entity.imageUrls,
       colors: entity.colors,
+      type: entity.type,
     );
   }
 }

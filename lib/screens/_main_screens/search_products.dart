@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'package:dotlottie_loader/dotlottie_loader.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:products_repository/products_repository.dart';
 import 'package:shopease/ui/cards/product_card.dart';
 import 'package:shopease/ui/cards/product_type_card.dart';
@@ -117,14 +119,18 @@ class RecycledItemsMainState extends State<RecycledItemsMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      appBar: const CustomAppBar(name: 'Shop Ease'),
+      appBar: const CustomAppBar(
+        name: 'Shop Ease',
+        isMainPage: true,
+      ),
       body: GestureDetector(
         onTap: () {
           _focusNode.unfocus(); // Unfocus TextField when tapping outside
         },
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(left: 15.0, right: 15, top: 8, bottom: 15),
+            padding: const EdgeInsets.only(
+                left: 15.0, right: 15, top: 8, bottom: 15),
             child: Column(
               children: [
                 Padding(
@@ -306,35 +312,90 @@ class RecycledItemsMainState extends State<RecycledItemsMain> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 5.0),
                   child: isLoading
-                      ? const Padding(
+                      ? Padding(
                           padding: EdgeInsets.symmetric(vertical: 20.0),
-                          child: Center(
-                              child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                                Color.fromARGB(255, 113, 44, 44)),
-                            strokeWidth: 4.0, // Width of the indicator stroke
-                            backgroundColor: Colors.transparent,
-                          )),
-                        )
-                      : GridView.builder(
-                          shrinkWrap: true,
-                          physics:
-                              const NeverScrollableScrollPhysics(), // Disable internal scrolling
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 15.0,
-                            mainAxisSpacing: 15.0,
-                            childAspectRatio: 9 / 15,
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 10.0),
+                              DotLottieLoader.fromAsset(
+                                  "assets/images/loadingWord.lottie",
+                                  frameBuilder:
+                                      (BuildContext ctx, DotLottie? dotlottie) {
+                                if (dotlottie != null) {
+                                  return Lottie.memory(
+                                      dotlottie.animations.values.single);
+                                } else {
+                                  return Container();
+                                }
+                              }),
+                              Text(
+                                'Please wait',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey[700]),
+                              ),
+                            ],
                           ),
-                          itemCount: _products.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            ProductModel product = _products[index];
-                            return ProductCard(
-                              item: product,
-                            );
-                          },
-                        ),
+                        )
+                      : _products.length == 0
+                          ? Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment
+                                    .center, // Ensures vertical centering
+                                crossAxisAlignment: CrossAxisAlignment
+                                    .center, // Ensures horizontal centering
+                                children: [
+                                  DotLottieLoader.fromAsset(
+                                    "assets/images/ladywithabox.lottie",
+                                    frameBuilder: (BuildContext ctx,
+                                        DotLottie? dotlottie) {
+                                      if (dotlottie != null) {
+                                        return SizedBox(
+                                          height:
+                                              250, // Set your desired height
+                                          child: Lottie.memory(dotlottie
+                                              .animations.values.single),
+                                        );
+                                      } else {
+                                        return Container();
+                                      }
+                                    },
+                                  ),
+
+                                  const SizedBox(
+                                      height:
+                                          20), // Adds some space between the image and the text
+                                  Text(
+                                    'No Products Found',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey[700],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          : GridView.builder(
+                              shrinkWrap: true,
+                              physics:
+                                  const NeverScrollableScrollPhysics(), // Disable internal scrolling
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 15.0,
+                                mainAxisSpacing: 15.0,
+                                childAspectRatio: 9 / 15,
+                              ),
+                              itemCount: _products.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                ProductModel product = _products[index];
+                                return ProductCard(
+                                  item: product,
+                                );
+                              },
+                            ),
                 ),
               ],
             ),

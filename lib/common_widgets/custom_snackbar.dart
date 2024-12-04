@@ -37,7 +37,7 @@ class CustomSnackbar {
         left: 80,
         right: 80,
         top: topPosition -
-            80, // Set this value to adjust how far from the top you want the Snackbar
+            40, // Set this value to adjust how far from the top you want the Snackbar
 
         child: Material(
           color: Colors.transparent,
@@ -48,24 +48,12 @@ class CustomSnackbar {
                   ? Colors.red[800]!.withOpacity(0.9)
                   : type == 'w'
                       ? Colors.orange[800]!.withOpacity(0.9)
-                      : Colors.green[800]!.withOpacity(0.9),
+                      : Colors.grey[800]!.withOpacity(0.9),
               borderRadius: BorderRadius.circular(8.0),
             ),
             child: Column(
               children: [
-                Text(
-                  type == 'e'
-                      ? 'Error'
-                      : type == 'w'
-                          ? 'Warning'
-                          : 'Success',
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 5),
+                
                 Text(
                   message,
                   style: const TextStyle(color: Colors.white, fontSize: 15),

@@ -40,7 +40,7 @@ class ProductPage extends StatelessWidget {
             left: 0,
             right: 0,
             height: 80,
-            child: CustomAppBar(name: 'Details'),
+            child: CustomAppBar(name: 'Details', isMainPage: false,),
           )
         ]),
       ),

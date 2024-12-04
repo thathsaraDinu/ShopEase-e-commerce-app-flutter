@@ -201,6 +201,7 @@ class _SignupLoginPageState extends State<SignupLoginPage> {
                                       width: 25.0, // adjust width as needed
                                       height: 25.0, // adjust height as needed
                                       child: CircularProgressIndicator(
+                                        
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
                                                 Colors.white),
