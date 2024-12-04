@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:products_repository/products_repository.dart';
 
 class WishlistEntity {
   final String userId;

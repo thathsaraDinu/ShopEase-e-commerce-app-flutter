@@ -21,10 +21,10 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
     final userid = user.currentUser!.uid;
     return Card(
       color: Colors.white,
-      margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
       elevation: 5,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Stack(
         children: [
@@ -51,7 +51,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(6.0),
             child: Column(
               children: [
                 Stack(children: [
@@ -119,7 +119,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              height: 20,
+                              height: 10,
                             ),
                             Text(
                               widget.cartItem.name,
@@ -131,7 +131,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
-                            const SizedBox(height: 8),
+                            const SizedBox(height: 5),
                             Text(
                               'Quantity: ${widget.cartItem.quantity}',
                               style: TextStyle(
@@ -147,7 +147,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                   ),
                 ]),
                 const Divider(
-                  height: 20,
+                  height: 15,
                   thickness: 1.5,
                 ),
                 Row(

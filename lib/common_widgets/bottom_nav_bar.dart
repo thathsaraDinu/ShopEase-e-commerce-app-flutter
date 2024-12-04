@@ -21,54 +21,78 @@ class _BottomNavBarState extends State<BottomNavBar> {
   }
 
   static const List<Widget> _pages = <Widget>[
-    Center(child: RecycledItemsMain()),
-    Center(child: WishListPage()),
-    Center(child: ShoppingCart(isMainPage: true,)),
-    Center(
-      child: ProfilePage(),
-    )
+    RecycledItemsMain(),
+    WishListPage(),
+    ShoppingCart(
+      isMainPage: true,
+    ),
+    ProfilePage(),
   ];
+
+  Future<bool> _onWillPop() async {
+    final shouldExit = await showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Exit App'),
+          content: const Text('Are you sure you want to exit the app?'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: const Text('Cancel', style: TextStyle(color: Colors.blue)),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              child: const Text('Exit', style: TextStyle(color: Colors.red)),
+            ),
+          ],
+        );
+      },
+    );
+    return shouldExit ?? false; // Return `false` if the dialog is dismissed
+  }
 
   @override
   Widget build(BuildContext context) {
-    var red = Colors.red[900];
-    return BackgroundImageWrapper(
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: _pages[_selectedIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          backgroundColor: Colors.red[100],
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: red, // Color for the selected item
-          unselectedItemColor: Colors.red[300], // Color for unselected items
-          showUnselectedLabels: false, // Hides unselected labels
-          showSelectedLabels: false, // Hides selected labels
-          elevation: 15, // Adds shadow effect
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              activeIcon:
-                  Icon(Icons.home, size: 30), // Active icon with larger size
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_outline),
-              activeIcon: Icon(Icons.favorite, size: 30),
-              label: 'Search',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart_outlined),
-              activeIcon: Icon(Icons.shopping_cart, size: 30),
-              label: 'Cart',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline),
-              activeIcon: Icon(Icons.person, size: 30),
-              label: 'Profile',
-            ),
-          ],
+    return WillPopScope(
+      onWillPop: _onWillPop, // Intercept back button
+      child: BackgroundImageWrapper(
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: _pages[_selectedIndex],
+          bottomNavigationBar: NavigationBar(
+            selectedIndex: _selectedIndex,
+            shadowColor: Colors.red,
+            indicatorColor: Colors.redAccent[200],
+            onDestinationSelected: _onItemTapped,
+            backgroundColor: Colors.red[50],
+            elevation: 3,
+            height: 70,
+            destinations: const [
+              NavigationDestination(
+                icon: Icon(Icons.home_outlined),
+                selectedIcon: Icon(Icons.home, size: 28, color: Colors.white),
+                label: 'Home',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.favorite_outline),
+                selectedIcon:
+                    Icon(Icons.favorite, size: 28, color: Colors.white),
+                label: 'Favorites',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.shopping_cart_outlined),
+                selectedIcon:
+                    Icon(Icons.shopping_cart, size: 28, color: Colors.white),
+                label: 'Cart',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.person_outline),
+                selectedIcon: Icon(Icons.person, size: 28, color: Colors.white),
+                label: 'Profile',
+              ),
+            ],
+          ),
         ),
       ),
     );

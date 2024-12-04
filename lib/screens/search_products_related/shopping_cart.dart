@@ -29,15 +29,15 @@ class _ShoppingCartState extends State<ShoppingCart> {
         backgroundColor: Colors.transparent,
         appBar: CustomAppBar(
           name: 'Shopping cart',
-          isMainPage: widget.isMainPage ,
+          isMainPage: widget.isMainPage,
         ),
         body: Column(
           children: [
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(
-                  left: 20.0,
-                  right: 20.0,
+                  left: 10.0,
+                  right: 10.0,
                   top: 0.0,
                   bottom: 0.0,
                 ),
@@ -92,18 +92,10 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                 crossAxisAlignment: CrossAxisAlignment
                                     .center, // Ensures horizontal centering
                                 children: [
-
-                                  DotLottieLoader.fromAsset(
-                                      "assets/images/emptyboxwithwhitebackground.lottie",
-                                      frameBuilder: (BuildContext ctx,
-                                          DotLottie? dotlottie) {
-                                    if (dotlottie != null) {
-                                      return Lottie.memory(
-                                          dotlottie.animations.values.single);
-                                    } else {
-                                      return Container();
-                                    }
-                                  }),
+                                  Lottie.asset(
+                                    'assets/images/emptyboxwithsign.json',
+                                    height: 300,
+                                  ),
                                   Text(
                                     'Your Cart is Empty',
                                     style: TextStyle(
@@ -149,7 +141,8 @@ class _ShoppingCartState extends State<ShoppingCart> {
                 }
                 if (!snapshot.hasData) {
                   return const Center(
-                      child: Text('0.0')); // Handle case where no data is returned
+                      child:
+                          Text('0.0')); // Handle case where no data is returned
                 }
                 final totalAmount = snapshot.data!;
                 return Container(

@@ -1,5 +1,4 @@
 import 'package:dotlottie_loader/dotlottie_loader.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:products_repository/products_repository.dart';
@@ -76,8 +75,11 @@ class WishListPage extends StatelessWidget {
                             "assets/images/emptywishlist.lottie", frameBuilder:
                                 (BuildContext ctx, DotLottie? dotlottie) {
                           if (dotlottie != null) {
-                            return Lottie.memory(
-                                dotlottie.animations.values.single);
+                            return SizedBox(
+                              height: 300,
+                              child: Lottie.memory(
+                                  dotlottie.animations.values.single),
+                            );
                           } else {
                             return Container();
                           }

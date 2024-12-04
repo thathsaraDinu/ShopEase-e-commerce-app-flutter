@@ -1,7 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:products_repository/products_repository.dart';
-import 'entities/entities.dart';
-import 'models/wishlist_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'wishlist_repo.dart';
 

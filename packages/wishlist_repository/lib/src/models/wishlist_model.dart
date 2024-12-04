@@ -1,4 +1,3 @@
-import 'package:products_repository/products_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../entities/entities.dart';

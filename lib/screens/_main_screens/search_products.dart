@@ -353,7 +353,7 @@ class RecycledItemsMainState extends State<RecycledItemsMain> {
                                       if (dotlottie != null) {
                                         return SizedBox(
                                           height:
-                                              250, // Set your desired height
+                                            260, // Set your desired height
                                           child: Lottie.memory(dotlottie
                                               .animations.values.single),
                                         );
