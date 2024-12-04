@@ -78,7 +78,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 icon: Icon(Icons.favorite_outline),
                 selectedIcon:
                     Icon(Icons.favorite, size: 28, color: Colors.white),
-                label: 'Favorites',
+                label: 'Wish List',
               ),
               NavigationDestination(
                 icon: Icon(Icons.shopping_cart_outlined),
