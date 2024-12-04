@@ -15,7 +15,7 @@
 
 - **Frontend**: Flutter
 - **Backend**: Firebase for user authentication, database, and notifications
-- **Dependency Packages**: get, provider, connectivity plus, lottie, native splash
+- **Dependency Packages**: get, provider, connectivity plus, lottie, native splash, firestore, firebase core
 
 ## Logo
 
