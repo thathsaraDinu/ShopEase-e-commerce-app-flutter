@@ -13,7 +13,7 @@ class WishlistCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MyUser user = Provider.of<MyUser>(context, listen: false);
+    FirebaseUserRepo user = Provider.of<FirebaseUserRepo>(context, listen: false);
     WishlistRepo wishlist =
         Provider.of<FirebaseWishlistRepo>(context, listen: false);
 
@@ -97,7 +97,7 @@ class WishlistCard extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () async {
-                              await wishlist.deleteWishlistItem(user.uid, product.pid);
+                              await wishlist.deleteWishlistItem(user.currentUser!.uid, product.pid);
                               Navigator.pop(context);
                             },
                             child: Text('Remove', style: TextStyle(color: Colors.red)),
