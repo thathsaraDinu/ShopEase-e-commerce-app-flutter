@@ -146,7 +146,8 @@ class _ShoppingCartState extends State<ShoppingCart> {
                 }
                 final totalAmount = snapshot.data!;
                 return Container(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 15),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10.0),
@@ -162,7 +163,8 @@ class _ShoppingCartState extends State<ShoppingCart> {
                   child: Column(
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end,crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -188,6 +190,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                   ),
                                 ],
                               ),
+                              const SizedBox(height: 2),
                               Row(
                                 children: [
                                   const Text(
@@ -209,34 +212,32 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                   ),
                                 ],
                               ),
-
                             ],
                           ),
                           SizedBox(width: 15),
                           ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/checkout',
-                              arguments: totalAmount);
-                          // Proceed to checkout
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red[700],
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 12.0),
-                          elevation: 5.0,
-                        ),
-                        child: const Text(
-                          'Check Out',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            color: Colors.white,
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/checkout',
+                                  arguments: totalAmount);
+                              // Proceed to checkout
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red[700],
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 18.0, vertical: 10.0),
+                              elevation: 3.0,
+                            ),
+                            child: const Text(
+                              'Check Out',
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
                         ],
                       ),
-                      
                     ],
                   ),
                 );

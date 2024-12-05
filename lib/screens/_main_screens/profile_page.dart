@@ -50,19 +50,17 @@ class _ProfilePageState extends State<ProfilePage> {
                     fontWeight: FontWeight.bold,
                     fontSize: 23.0,
                     color: Colors.red[900])),
-            const SizedBox(height: 50),
+            const SizedBox(height: 25),
             StreamBuilder<MyUser>(
               stream: userRepo.user,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Flexible(
-                    child: SizedBox(
-                      height: 30,
-                      width: 30,
-                      child: const CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                            Color.fromARGB(255, 113, 44, 44)),
-                      ),
+                  return SizedBox(
+                    height: 30,
+                    width: 30,
+                    child: const CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                          Color.fromARGB(255, 113, 44, 44)),
                     ),
                   );
                 } else if (snapshot.hasError) {
@@ -104,7 +102,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 10),
                       Text(
                         '$userName', // Display the correct name
                         style: TextStyle(

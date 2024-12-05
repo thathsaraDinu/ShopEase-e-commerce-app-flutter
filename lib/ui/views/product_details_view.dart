@@ -80,7 +80,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 child: Text(
                   item.name,
                   style: const TextStyle(
-                    fontSize: 25.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -146,7 +146,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             ],
           ),
           const SizedBox(
-            height: 10.0,
+            height: 0.0,
           ),
           Text(
             '${item.price.toInt()} USD',
@@ -165,7 +165,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           Text(
             item.longDescription,
             style: const TextStyle(
-              fontSize: 16.0,
+              fontSize: 15.0,
               fontWeight: FontWeight.w500,
             ),
           ),

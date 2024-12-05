@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:dotlottie_loader/dotlottie_loader.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:lottie/lottie.dart';
 import 'package:products_repository/products_repository.dart';
 import 'package:shopease/ui/cards/product_card.dart';
@@ -199,14 +200,14 @@ class RecycledItemsMainState extends State<RecycledItemsMain> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 10.0, vertical: 15),
+                      horizontal: 10.0, vertical: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         productTypes[selectedIndex]['topic']!,
                         style: const TextStyle(
-                          fontSize: 20.0,
+                          fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -310,93 +311,85 @@ class RecycledItemsMainState extends State<RecycledItemsMain> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                  child: isLoading
-                      ? Padding(
-                          padding: EdgeInsets.symmetric(vertical: 20.0),
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 10.0),
-                              DotLottieLoader.fromAsset(
-                                  "assets/images/loadingWord.lottie",
-                                  frameBuilder:
-                                      (BuildContext ctx, DotLottie? dotlottie) {
-                                if (dotlottie != null) {
-                                  return Lottie.memory(
-                                      dotlottie.animations.values.single);
-                                } else {
-                                  return Container();
-                                }
-                              }),
-                              Text(
-                                'Please wait',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.grey[700]),
-                              ),
-                            ],
-                          ),
-                        )
-                      : _products.length == 0
-                          ? Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment
-                                    .center, // Ensures vertical centering
-                                crossAxisAlignment: CrossAxisAlignment
-                                    .center, // Ensures horizontal centering
-                                children: [
-                                  DotLottieLoader.fromAsset(
-                                    "assets/images/ladywithabox.lottie",
+                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                    child: isLoading
+                        ? Padding(
+                            padding: EdgeInsets.symmetric(vertical: 20.0),
+                            child: Column(
+                              children: [
+                                const SizedBox(height: 10.0),
+                                DotLottieLoader.fromAsset(
+                                    "assets/images/loadingWord.lottie",
                                     frameBuilder: (BuildContext ctx,
                                         DotLottie? dotlottie) {
-                                      if (dotlottie != null) {
-                                        return SizedBox(
-                                          height:
-                                            260, // Set your desired height
-                                          child: Lottie.memory(dotlottie
-                                              .animations.values.single),
-                                        );
-                                      } else {
-                                        return Container();
-                                      }
-                                    },
-                                  ),
-
-                                  const SizedBox(
-                                      height:
-                                          20), // Adds some space between the image and the text
-                                  Text(
-                                    'No Products Found',
-                                    style: TextStyle(
+                                  if (dotlottie != null) {
+                                    return Lottie.memory(
+                                        dotlottie.animations.values.single);
+                                  } else {
+                                    return Container();
+                                  }
+                                }),
+                                Text(
+                                  'Please wait',
+                                  style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.grey[700],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          : GridView.builder(
-                              shrinkWrap: true,
-                              physics:
-                                  const NeverScrollableScrollPhysics(), // Disable internal scrolling
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                crossAxisSpacing: 15.0,
-                                mainAxisSpacing: 15.0,
-                                childAspectRatio: 0.6,
-                              ),
-                              itemCount: _products.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                ProductModel product = _products[index];
-                                return ProductCard(
-                                  item: product,
-                                );
-                              },
+                                      color: Colors.grey[700]),
+                                ),
+                              ],
                             ),
-                ),
+                          )
+                        : _products.length == 0
+                            ? Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment
+                                      .center, // Ensures vertical centering
+                                  crossAxisAlignment: CrossAxisAlignment
+                                      .center, // Ensures horizontal centering
+                                  children: [
+                                    const SizedBox(height: 20.0),
+                                    DotLottieLoader.fromAsset(
+                                      "assets/images/ladywithabox.lottie",
+                                      frameBuilder: (BuildContext ctx,
+                                          DotLottie? dotlottie) {
+                                        if (dotlottie != null) {
+                                          return SizedBox(
+                                            height:
+                                                260, // Set your desired height
+                                            child: Lottie.memory(dotlottie
+                                                .animations.values.single),
+                                          );
+                                        } else {
+                                          return Container();
+                                        }
+                                      },
+                                    ),
+
+                                    const SizedBox(
+                                        height:
+                                            20), // Adds some space between the image and the text
+                                    Text(
+                                      'No Products Found',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey[700],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            : LayoutGrid(
+                                columnSizes: List.generate(2, (_) => 1.fr),
+                                rowSizes: List.generate(
+                                    (_products.length / 2).ceil(), (_) => auto),
+                                columnGap: 10.0, // Horizontal spacing
+                                rowGap: 12.0, // Vertical spacing
+                                children: _products
+                                    .map(
+                                        (product) => ProductCard(item: product))
+                                    .toList(),
+                              )),
               ],
             ),
           ),

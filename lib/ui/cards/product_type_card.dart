@@ -29,9 +29,9 @@ class _ProductTypeCardState extends State<ProductTypeCard> {
         ),
         decoration: BoxDecoration(
             color: widget.selectedIndex == widget.index
-                ? Colors.red[200]
+                ? Colors.redAccent[200]
                 : Colors.transparent,
-            borderRadius: const BorderRadius.all(Radius.circular(10))),
+            borderRadius: const BorderRadius.all(Radius.circular(5))),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -42,11 +42,15 @@ class _ProductTypeCardState extends State<ProductTypeCard> {
             ),
             Text(
               widget.item['type'],
-              style: const TextStyle(
+              style:  TextStyle(
                 fontSize: 14.0,
                 fontWeight: FontWeight.w600,
+                color: widget.selectedIndex == widget.index
+                    ? Colors.white
+                    : Colors.black,
               ),
               maxLines: 1,
+              
               overflow: TextOverflow.ellipsis,
             ),
           ],

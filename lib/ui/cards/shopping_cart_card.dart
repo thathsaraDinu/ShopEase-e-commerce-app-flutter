@@ -44,7 +44,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                 '${widget.cartItem.price.toInt()} USD',
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 15,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -105,9 +105,12 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Image.network(
-                          widget.cartItem.imageUrl,
-                          fit: BoxFit.cover,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.network(
+                            widget.cartItem.imageUrl,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                         // Image widget for product image can go here
                       ),
@@ -122,7 +125,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                             Text(
                               widget.cartItem.name,
                               style: const TextStyle(
-                                fontSize: 18.0,
+                                fontSize: 16.0,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black87,
                               ),
@@ -133,7 +136,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                             Text(
                               'Quantity: ${widget.cartItem.quantity}',
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.grey.shade600,
                               ),
@@ -174,7 +177,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                           child: Text(
                             '${widget.cartItem.quantity}',
                             style: const TextStyle(
-                              fontSize: 18,
+                              fontSize: 14,
                               fontWeight: FontWeight.w700,
                               color: Colors.black87,
                             ),
@@ -197,7 +200,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                         const Text(
                           'Color : ',
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: Colors.black45,
                           ),

@@ -33,11 +33,14 @@ class WishlistCard extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
-              Image.network(
-                product.imageUrls[0],
-                width: 100,
-                height: 100,
-                fit: BoxFit.cover,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  product.imageUrls[0],
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
+                ),
               ),
               SizedBox(width: 10),
               Expanded(
@@ -55,8 +58,9 @@ class WishlistCard extends StatelessWidget {
                     Text(
                       '${product.price} USD',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 15,
                         color: Colors.black,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     SizedBox(height: 5),
@@ -65,7 +69,7 @@ class WishlistCard extends StatelessWidget {
                       maxLines: 2,
                       style: TextStyle(
                         fontSize: 14,
-                        color: Colors.black,
+                        color: Colors.black54,
                       ),
                     ),
                   ],
