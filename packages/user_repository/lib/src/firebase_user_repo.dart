@@ -5,6 +5,7 @@ import 'package:rxdart/rxdart.dart';
 import './models/models.dart';
 import './entities/entities.dart';
 import './user_repo.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseUserRepo extends ChangeNotifier implements UserRepository {
   final FirebaseAuth _firebaseAuth;
@@ -88,4 +89,38 @@ class FirebaseUserRepo extends ChangeNotifier implements UserRepository {
   Future<void> signOut() {
     return _firebaseAuth.signOut();
   }
+
+ Future<User?> signInWithGoogle() async {
+    try {
+      // Attempt to sign in with Google
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      if (googleUser == null) {
+        // The user canceled the sign-in process
+        return null; // Or handle accordingly
+      }
+
+      // Retrieve authentication credentials
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      // Sign in with Firebase
+      final UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+
+      // Return the signed-in user
+      return userCredential.user;
+    } catch (e) {
+      // Handle specific error cases
+      print("Error signing in with Google: $e");
+      throw Exception(
+          "Failed to sign in with Google: $e"); // Custom error message
+    }
+  }
+
 }

@@ -71,6 +71,7 @@ final bool isMainPage;
                       onPressed: () {
                         Navigator.pushNamed(context, '/shoppingcart');
                       },
+                      
                     ),
                     // Only show the badge if items exist in cart
                     StreamBuilder<int>(
@@ -89,8 +90,8 @@ final bool isMainPage;
                           final cartItemCount = snapshot.data!;
                           return cartItemCount > 0
                               ? Positioned(
-                                  right: 5,
-                                  top: 5,
+                                  right: 1,
+                                  top: 2,
                                   child: Container(
                                     padding: const EdgeInsets.all(2),
                                     decoration: BoxDecoration(

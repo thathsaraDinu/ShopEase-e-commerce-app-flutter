@@ -211,13 +211,13 @@ class RecycledItemsMainState extends State<RecycledItemsMain> {
                         ),
                       ),
                       Material(
-                        elevation: 3,
+                        elevation: 0,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                         color: Colors.white,
                         child: InkWell(
-                          borderRadius: BorderRadius.circular(10.0),
+                          borderRadius: BorderRadius.circular(8.0),
                           onTap: () {
                             showDialog(
                               context: context,
@@ -386,7 +386,7 @@ class RecycledItemsMainState extends State<RecycledItemsMain> {
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 15.0,
                                 mainAxisSpacing: 15.0,
-                                childAspectRatio: 9 / 15,
+                                childAspectRatio: 0.6,
                               ),
                               itemCount: _products.length,
                               itemBuilder: (BuildContext context, int index) {

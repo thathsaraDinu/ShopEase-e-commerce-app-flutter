@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:user_repository/user_repository.dart';
 import 'package:provider/provider.dart';
 
@@ -54,6 +55,26 @@ class _SignupLoginPageState extends State<SignupLoginPage> {
     }
   }
 
+  Future<void> _signInWithGoogle() async {
+    try {
+      setState(() {
+        _isLoading = true;
+        _errorMessage = null;
+      });
+      final userRepo = Provider.of<FirebaseUserRepo>(context, listen: false);
+      await userRepo.signInWithGoogle();
+      Navigator.pushReplacementNamed(context, '/'); // Adjust route as needed
+    } catch (e) {
+      setState(() => _errorMessage = e.toString());
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,13 +115,17 @@ class _SignupLoginPageState extends State<SignupLoginPage> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                   margin: const EdgeInsets.only(top: 15.0),
-                  color: const Color.fromARGB(255, 255, 233, 233).withOpacity(0.9),
+                  color:
+                      const Color.fromARGB(255, 255, 233, 233).withOpacity(0.9),
                   child: Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Form(
                       key: _formKey,
                       child: Column(
                         children: [
+                          SizedBox(
+                            height: 10,
+                          ),
                           TextFormField(
                             controller: _emailController,
                             decoration: InputDecoration(
@@ -201,14 +226,13 @@ class _SignupLoginPageState extends State<SignupLoginPage> {
                                       width: 25.0, // adjust width as needed
                                       height: 25.0, // adjust height as needed
                                       child: CircularProgressIndicator(
-                                        
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
                                                 Colors.white),
                                         color: Colors.white,
                                       ),
                                     )),
-                          const SizedBox(height: 16),
+                          const SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -245,6 +269,35 @@ class _SignupLoginPageState extends State<SignupLoginPage> {
                     ),
                   ),
                 ),
+              ),
+              const SizedBox(height: 16),
+              Container(
+                child: Text('or continue with', style: TextStyle(fontSize: 16)),
+              ),
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(width: 10),
+                  IconButton(
+                    icon: SvgPicture.asset('assets/icon/google.svg'),
+                    onPressed: () async {
+                      await _signInWithGoogle();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.center,
+                      foregroundColor: Colors.black,
+                      surfaceTintColor:
+                          const Color.fromARGB(255, 213, 213, 213),
+                      backgroundColor: Colors.grey[200],
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12.0, horizontal: 15.0),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),
+                      elevation: 5,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

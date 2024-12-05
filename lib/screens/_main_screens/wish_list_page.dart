@@ -13,7 +13,7 @@ class WishListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MyUser user = Provider.of<MyUser>(context);
+    FirebaseUserRepo user = Provider.of<FirebaseUserRepo>(context);
     WishlistRepo wishlist = Provider.of<FirebaseWishlistRepo>(context);
 
     return Scaffold(
@@ -30,7 +30,7 @@ class WishListPage extends StatelessWidget {
             Expanded(
               // Add Expanded here to ensure the StreamBuilder gets bounded height
               child: StreamBuilder<List<ProductModel>>(
-                stream: wishlist.getWishlistItems(user.uid),
+                stream: wishlist.getWishlistItems(user.currentUser!.uid),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(

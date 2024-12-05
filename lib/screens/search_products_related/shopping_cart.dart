@@ -146,7 +146,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                 }
                 final totalAmount = snapshot.data!;
                 return Container(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 15),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10.0),
@@ -162,28 +162,58 @@ class _ShoppingCartState extends State<ShoppingCart> {
                   child: Column(
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.end,crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const Text(
-                            'Total Amount',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87,
-                            ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Total: ',
+                                    style: TextStyle(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87,
+                                    ),
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text(
+                                    '${totalAmount.toInt()} USD',
+                                    style: TextStyle(
+                                      fontSize: 19.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.red[700],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Delivery Fee: ',
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87,
+                                    ),
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text(
+                                    '0 USD',
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.red[700],
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                            ],
                           ),
-                          Text(
-                            '$totalAmount USD',
-                            style: TextStyle(
-                              fontSize: 22.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.red[700],
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10.0),
-                      ElevatedButton(
+                          SizedBox(width: 15),
+                          ElevatedButton(
                         onPressed: () {
                           Navigator.pushNamed(context, '/checkout',
                               arguments: totalAmount);
@@ -197,14 +227,16 @@ class _ShoppingCartState extends State<ShoppingCart> {
                           elevation: 5.0,
                         ),
                         child: const Text(
-                          'Checkout',
+                          'Check Out',
                           style: TextStyle(
                             fontSize: 18.0,
                             color: Colors.white,
                           ),
                         ),
                       ),
-                      const SizedBox(height: 10.0),
+                        ],
+                      ),
+                      
                     ],
                   ),
                 );

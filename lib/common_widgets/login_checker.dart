@@ -1,7 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:user_repository/user_repository.dart';
-import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginChecker extends StatelessWidget {
   const LoginChecker({super.key, required this.routeName});
@@ -9,14 +7,14 @@ class LoginChecker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userRepo = Provider.of<FirebaseUserRepo>(context);
     return Scaffold(
       backgroundColor: Colors.white,
-      body: StreamBuilder<MyUser>(
-        stream: userRepo.user,
+      body: StreamBuilder<User?>(
+        stream:
+            FirebaseAuth.instance.authStateChanges(), // Listen to auth state
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return  Center(
+            return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -24,17 +22,11 @@ class LoginChecker extends StatelessWidget {
                     'assets/images/ShopEase(1).png',
                     height: 200,
                   ),
-                  const SizedBox(height: 40,),
-                  const SizedBox(
-                    width: 30.0, // Set width
-                    height: 30.0, // Set height
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                          Color.fromARGB(255, 113, 44, 44)),
-                      strokeWidth: 4.0, // Width of the indicator stroke
-                      backgroundColor:
-                          Colors.transparent, // Background color behind the indicator
-                    ),
+                  const SizedBox(height: 40),
+                  const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        Color.fromARGB(255, 113, 44, 44)),
+                    strokeWidth: 4.0,
                   ),
                 ],
               ),
@@ -45,11 +37,8 @@ class LoginChecker extends StatelessWidget {
             return Center(child: Text('Error: ${snapshot.error}'));
           }
 
-          if (!snapshot.hasData || snapshot.data == MyUser.empty) {
-            if (kDebugMode) {
-              print('no one is logged in');
-            }
-            // Navigate to login page if not authenticated
+          if (!snapshot.hasData) {
+            // If no user is logged in, redirect to the sign-up/login page
             WidgetsBinding.instance.addPostFrameCallback((_) {
               Navigator.pushNamedAndRemoveUntil(
                 context,
@@ -57,17 +46,17 @@ class LoginChecker extends StatelessWidget {
                 (routes) => false,
               );
             });
-            // Placeholder while navigating
+            return Container(); // Empty container while navigating
           } else {
+            // If the user is logged in, navigate to the specified route
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              SnackBar(content: Text('Welcome back, ${snapshot.data}'));
               Navigator.pushReplacementNamed(
                 context,
                 routeName,
               );
             });
+            return Container(); // Empty container while navigating
           }
-          return const SizedBox.shrink();
         },
       ),
     );
