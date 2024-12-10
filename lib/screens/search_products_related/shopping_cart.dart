@@ -129,12 +129,31 @@ class _ShoppingCartState extends State<ShoppingCart> {
               stream: cartItems.getTotalPrice(user.currentUser!.uid),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Expanded(
-                    child: const Center(
-                        child: CircularProgressIndicator(
-                      color: Color.fromARGB(255, 113, 44, 44),
-                    )),
-                  );
+                  return Center(
+                      child: Container(
+                          child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      DotLottieLoader.fromAsset(
+                          "assets/images/loadingWord.lottie", frameBuilder:
+                              (BuildContext ctx, DotLottie? dotlottie) {
+                        if (dotlottie != null) {
+                          return Lottie.memory(
+                              dotlottie.animations.values.single);
+                        } else {
+                          return Container();
+                        }
+                      }),
+                      Text(
+                        'Please wait',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey[700]),
+                      ),
+                    ],
+                  )));
                 }
                 if (snapshot.hasError) {
                   return const Center(child: Text('0.0'));
@@ -146,8 +165,8 @@ class _ShoppingCartState extends State<ShoppingCart> {
                 }
                 final totalAmount = snapshot.data!;
                 return Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 15),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10.0),
