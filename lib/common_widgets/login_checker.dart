@@ -32,11 +32,13 @@ class LoginChecker extends StatelessWidget {
               ),
             );
           }
-
           if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
+            return Center(
+                child: Text(
+              'An Error occured',
+              style: TextStyle(color: Colors.red),
+            ));
           }
-
           if (!snapshot.hasData) {
             // If no user is logged in, redirect to the sign-up/login page
             WidgetsBinding.instance.addPostFrameCallback((_) {

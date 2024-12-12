@@ -18,6 +18,13 @@ class _SignupLoginPageState extends State<SignupLoginPage> {
   bool isLogin = true;
   bool _isLoading = false;
   String? _errorMessage;
+  late final FirebaseUserRepo userRepo;
+
+  @override
+  void initState() {
+    super.initState();
+    userRepo = Provider.of<FirebaseUserRepo>(context, listen: false);
+  }
 
   Future<void> _submit() async {
     if (_formKey.currentState?.validate() ?? false) {
@@ -26,7 +33,7 @@ class _SignupLoginPageState extends State<SignupLoginPage> {
           _isLoading = true;
           _errorMessage = null;
         });
-        final userRepo = Provider.of<FirebaseUserRepo>(context, listen: false);
+
         if (isLogin) {
           await userRepo.signInWithEmailAndPassword(
             email: _emailController.text,
@@ -44,7 +51,7 @@ class _SignupLoginPageState extends State<SignupLoginPage> {
         }
         Navigator.pushReplacementNamed(context, '/'); // Adjust route as needed
       } catch (e) {
-        setState(() => _errorMessage = e.toString());
+        setState(() => _errorMessage = userRepo.mapErrorToMessage(e));
       } finally {
         if (mounted) {
           setState(() {
@@ -65,7 +72,7 @@ class _SignupLoginPageState extends State<SignupLoginPage> {
       await userRepo.signInWithGoogle();
       Navigator.pushReplacementNamed(context, '/'); // Adjust route as needed
     } catch (e) {
-      setState(() => _errorMessage = e.toString());
+      setState(() => _errorMessage = userRepo.mapErrorToMessage(e));
     } finally {
       if (mounted) {
         setState(() {
@@ -88,7 +95,7 @@ class _SignupLoginPageState extends State<SignupLoginPage> {
               const SizedBox(height: 30),
               Image.asset(
                 'assets/images/ShopEase(1).png',
-                height: 200,
+                height: 120,
               ),
               const SizedBox(height: 10),
               Text(
@@ -209,7 +216,7 @@ class _SignupLoginPageState extends State<SignupLoginPage> {
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.red,
                                 padding: const EdgeInsets.symmetric(
-                                    vertical: 16.0, horizontal: 80.0),
+                                    vertical: 14.0, horizontal: 80.0),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12)),
                                 elevation: 5,
@@ -219,12 +226,12 @@ class _SignupLoginPageState extends State<SignupLoginPage> {
                                       isLogin ? 'Login' : 'Sign Up',
                                       style: const TextStyle(
                                           color: Colors.white,
-                                          fontSize: 18,
+                                          fontSize: 15,
                                           fontWeight: FontWeight.bold),
                                     )
                                   : const SizedBox(
-                                      width: 25.0, // adjust width as needed
-                                      height: 25.0, // adjust height as needed
+                                      width: 22.0, // adjust width as needed
+                                      height: 22.0, // adjust height as needed
                                       child: CircularProgressIndicator(
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
@@ -281,6 +288,7 @@ class _SignupLoginPageState extends State<SignupLoginPage> {
                   const SizedBox(width: 10),
                   IconButton(
                     icon: SvgPicture.asset('assets/icon/google.svg'),
+            iconSize: 100,
                     onPressed: () async {
                       await _signInWithGoogle();
                     },
@@ -289,9 +297,9 @@ class _SignupLoginPageState extends State<SignupLoginPage> {
                       foregroundColor: Colors.black,
                       surfaceTintColor:
                           const Color.fromARGB(255, 213, 213, 213),
-                      backgroundColor: Colors.grey[200],
+                      backgroundColor: Colors.grey[100],
                       padding: const EdgeInsets.symmetric(
-                          vertical: 12.0, horizontal: 15.0),
+                          vertical: 10.0, horizontal: 10.0),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),
                       elevation: 5,

@@ -64,7 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   );
                 } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
+                  return Center(child: Text('Error', style: TextStyle(color: Colors.red),));
                 } else if (!snapshot.hasData) {
                   return const Text('No user data available');
                 } else {

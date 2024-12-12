@@ -22,3 +22,17 @@
 ![Logo](assets/images/ShopEase(1).png)
 
 ## Screenshots
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+    <img src="screenshots/1.png" alt="App Screenshot" width="48%" height="auto">
+    <img src="screenshots/2.png" alt="App Screenshot" width="48%" height="auto">
+    <img src="screenshots/3.png" alt="App Screenshot" width="48%" height="auto">
+    <img src="screenshots/4.png" alt="App Screenshot" width="48%" height="auto">
+    <img src="screenshots/5.png" alt="App Screenshot" width="48%" height="auto">
+    <img src="screenshots/6.png" alt="App Screenshot" width="48%" height="auto">
+    <img src="screenshots/7.png" alt="App Screenshot" width="48%" height="auto">
+    <img src="screenshots/8.png" alt="App Screenshot" width="48%" height="auto">
+    <img src="screenshots/9.png" alt="App Screenshot" width="48%" height="auto">
+    <img src="screenshots/10.png" alt="App Screenshot" width="48%" height="auto">
+    <img src="screenshots/11.png" alt="App Screenshot" width="48%" height="auto">
+</div>

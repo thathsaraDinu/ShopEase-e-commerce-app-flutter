@@ -31,13 +31,18 @@ class FirebaseUserRepo extends ChangeNotifier implements UserRepository {
   }
 
   @override
-  Future<void> signInWithEmailAndPassword(
-      {required String email, required String password}) async {
+  Future<void> signInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
+        email: email,
+        password: password,
+      );
     } on FirebaseAuthException catch (e) {
-      throw Exception(e.message);
+      // Directly rethrow the FirebaseAuthException
+      throw e;
     }
   }
 
@@ -53,7 +58,7 @@ class FirebaseUserRepo extends ChangeNotifier implements UserRepository {
       await usersCollection.doc(myuser.uid).set(myuser.toEntity().toDocument());
       return myuser;
     } on FirebaseAuthException catch (e) {
-      throw Exception(e.message);
+      throw e;
     }
   }
 
@@ -90,7 +95,7 @@ class FirebaseUserRepo extends ChangeNotifier implements UserRepository {
     return _firebaseAuth.signOut();
   }
 
- Future<User?> signInWithGoogle() async {
+  Future<User?> signInWithGoogle() async {
     try {
       // Attempt to sign in with Google
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -123,4 +128,31 @@ class FirebaseUserRepo extends ChangeNotifier implements UserRepository {
     }
   }
 
+  /// Map error to custom message
+  @override
+  String mapErrorToMessage(Object error) {
+    print("Error type: ${error.runtimeType}, Error: $error");
+
+    if (error is FirebaseAuthException) {
+      print("Error code: ${error.code}");
+      switch (error.code) {
+        case 'wrong-password':
+          return 'The password is incorrect. Please try again.';
+        case 'user-not-found':
+          return 'No user found with this email address.';
+        case 'email-already-in-use':
+          return 'This email address is already in use.';
+        case 'invalid-email':
+          return 'The email address is invalid.';
+        case 'weak-password':
+          return 'The password is too weak. Please choose a stronger password.';
+        case 'invalid-credential':
+          return 'The email or password is invalid';
+        default:
+          return 'An unexpected error occurred. Please try again later.';
+      }
+    } else {
+      return 'An internal error occurred. Please try again.';
+    }
+  }
 }
