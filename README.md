@@ -34,5 +34,4 @@
     <img src="screenshots/8.png" alt="App Screenshot" width="48%" height="auto">
     <img src="screenshots/9.png" alt="App Screenshot" width="48%" height="auto">
     <img src="screenshots/10.png" alt="App Screenshot" width="48%" height="auto">
-    <img src="screenshots/11.png" alt="App Screenshot" width="48%" height="auto">
 </div>
