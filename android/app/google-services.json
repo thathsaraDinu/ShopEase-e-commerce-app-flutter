@@ -12,7 +12,20 @@
           "package_name": "com.dinu.shopease"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "833862710892-7ose87ck9gmlq5mn38k8hhv00tvrhcnc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dinu.shopease",
+            "certificate_hash": "94b680ef61ae7b54a4334ecfec804efc70d24c9e"
+          }
+        },
+        {
+          "client_id": "833862710892-bromu79ibh51ji1m6md4o8l9p9r42dl2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCwNTKacAnifzJBx9-CnflebTTooHTbS4M"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "833862710892-bromu79ibh51ji1m6md4o8l9p9r42dl2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

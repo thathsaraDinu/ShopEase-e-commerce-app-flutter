@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:products_repository/products_repository.dart';
 import 'package:provider/provider.dart';
+import 'package:shopease/api/firebase_messaging_api.dart';
 import 'package:shopease/common_network_check/firestore_provider.dart';
 import 'package:shopease/routes/routes.dart';
 import 'package:user_repository/user_repository.dart';
@@ -26,6 +27,7 @@ Future<void> main() async {
   } else {
     await Firebase.initializeApp();
   }
+  await FirebaseMessagingApi().initNotifications();
   debugPaintSizeEnabled = false; // Optionally enable for debugging
   runApp(
     MultiProvider(
