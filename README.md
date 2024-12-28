@@ -9,13 +9,13 @@
 - **User Accounts**: Create and manage user accounts, track orders, and save favorite items.
 - **Shopping Cart**: Add items to the shopping cart, view item details, and proceed to checkout smoothly.
 - **Wish List**: Add items users wish to buy in the future. easier in keeping a track of favorite items, their prices and stocks.
-- **Push Notifications**: Stay updated on new arrivals, promotions, and order status through real-time push notifications.
+- **Push Notifications**: Stay updated on new arrivals, promotions, and order status through notification messages.
 
 ## 💻 Tech Stack:
 
 - **Frontend**: Flutter
-- **Backend**: Firebase for user authentication, database, and notifications
-- **Dependency Packages**: get, provider, connectivity plus, lottie, native splash, firestore, firebase core, google sign in
+- **Backend**: Firebase for user authentication, database and notifications
+- **Dependencies**: get, provider, connectivity plus, lottie, native splash, firestore, firebase core, firebase auth, firebase messaging
 
 ## Logo
 
