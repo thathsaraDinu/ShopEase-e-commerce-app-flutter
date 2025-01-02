@@ -27,8 +27,10 @@
     <img src="screenshots/1.png" alt="App Screenshot" width="48%" height="auto">
     <img src="screenshots/2.png" alt="App Screenshot" width="48%" height="auto">
     <img src="screenshots/3.png" alt="App Screenshot" width="48%" height="auto">
+    <img src="screenshots/3-2.png" alt="App Screenshot" width="48%" height="auto">
     <img src="screenshots/4.png" alt="App Screenshot" width="48%" height="auto">
     <img src="screenshots/5.png" alt="App Screenshot" width="48%" height="auto">
+    <img src="screenshots/5-2.png" alt="App Screenshot" width="48%" height="auto">
     <img src="screenshots/6.png" alt="App Screenshot" width="48%" height="auto">
     <img src="screenshots/7.png" alt="App Screenshot" width="48%" height="auto">
     <img src="screenshots/8.png" alt="App Screenshot" width="48%" height="auto">

@@ -4,10 +4,11 @@ class FirebaseMessagingApi {
   final _firebaseMessaging = FirebaseMessaging.instance;
 
   Future<void> initNotifications() async {
-    await _firebaseMessaging.requestPermission();
+    // await _firebaseMessaging.requestPermission();
+    // final token = await _firebaseMessaging.getToken();
+    // print('Token: $token');
 
-    final token = await _firebaseMessaging.getToken();
+    await _firebaseMessaging.subscribeToTopic('all');
 
-    print('Token: $token');
   }
 }
