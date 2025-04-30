@@ -13,9 +13,7 @@
 
 ## 💻 Tech Stack:
 
-- **Frontend**: Flutter
-- **Backend**: Firebase for user authentication, database and notifications
-- **Dependencies**: get, provider, connectivity plus, lottie, native splash, firestore, firebase core, firebase auth, firebase messaging
+- Flutter, Firebase for user authentication, database and notifications, get, provider, connectivity plus, lottie, native splash, firestore, firebase core, firebase auth, firebase messaging
 
 ## Logo
 
