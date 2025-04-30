@@ -328,6 +328,8 @@ class _ProductDetailsState extends State<ProductDetails> {
     );
   }
 
+  
+
   Column buybuttons(ProductModel item, String userid, FirebaseCartRepo cart) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
